@@ -1,0 +1,126 @@
+html {
+  width: 100%;
+  height: 100%;
+}
+body {
+  font-family: "Merriweather", serif;
+  width: 100%;
+  height: 100%;
+}
+.gallery {
+  background-color: #121315;
+  height: 100%;
+  overflow: hidden;
+}
+.header {
+  background-image: url("/img/bg.jpg");
+  background-size: cover;
+  background-position: center;
+  box-shadow: 3px 2px 5px rgb(0 0 0 / 41%);
+  padding: 10px;
+}
+.title {
+  color: white;
+  display: flex;
+  justify-content: center;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 34px;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+input {
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  padding: 8px;
+  width: 90%;
+  outline: none;
+  border: none;
+}
+
+#search {
+  font-size: 12px;
+}
+#submit:hover {
+  transform: scale(1.1);
+  z-index: 999;
+}
+#submit {
+  border: none;
+  color: rgb(28, 28, 28);
+  background-color: white;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: 900;
+  transition: transform 0.5s ease;
+}
+.main {
+  height: 100%;
+  position: relative;
+  display: flex;
+  overflow: hidden;
+}
+.slider {
+  width: 100%;
+  max-width: 1400px;
+  height: 100%;
+  overflow: hidden;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+}
+.slide {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  position: absolute;
+  transition: all 0.9s;
+  
+}
+.slide img {
+  width: 100%;
+  height: 95%;
+  object-fit: cover;
+  object-position: center;
+
+}
+.slide a:hover{
+filter: grayscale(1);
+}
+.img-descr {
+  bottom: 0;
+  padding: 2px;
+  color: black;
+  background-color: white;
+  text-transform: uppercase;
+  width: 80%;
+
+}
+.btn {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  border: none;
+  border-radius: 50%;
+  z-index: 10px;
+  cursor: pointer;
+  background-color: white;
+  font-size: 18px;
+}
+.btn:active {
+  transform: scale(1.1);
+}
+
+.btn-prev {
+  top: 45%;
+  left: 2%;
+}
+.btn-next {
+  top: 45%;
+  right: 2%;
+}
