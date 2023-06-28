@@ -1,19 +1,29 @@
 import Slider from "./slide.js";
-function getGallery(key = "code") {
+
+function getGallery(key) {
   const API_KEY = 'Vsjek4agqqjVR5PVaeJrGbuTS7sPivIQpSCn_t6iMhk';
   const API_URL = 'https://api.unsplash.com/';
   const keyword = key;
   const url = `${API_URL}photos/random?client_id=${API_KEY}&count=30&query=${keyword}`;
 
+  const main = document.querySelector('.main');
+  main.classList.add('loading'); 
   return fetch(url)
     .then(response => checkStatusResponse(response))
     .then(data => {
+       setTimeout(() => {
+        main.classList.remove('loading'); 
+      }, 2000); 
+      changeBackgroundImage(data[1].urls.regular)
       addGallery(data)
+      new Slider()
     })
-    .catch(error => console.error('Error:', error));
+    .catch(error => console.error('Error:', error))
+    
 }
 
 function checkStatusResponse(response) {
+
   if (response.ok) {
     return response.json();
   } else {
@@ -29,10 +39,9 @@ function galleryTemplate(picture) {
 
   const img = `
   <div class="slide">
-    <a href="${imageDownloadLink}" target="_blank">
-      <img src="${imageUrl}" alt="${imageAlt}">
+    <a href="${imageDownloadLink}" target="_blank" rel="noopener noreferrer">
+      <img src="${imageUrl}" alt="${imageAlt}" oncontextmenu="event.preventDefault()">
     </a>
-    <span class="img-descr">${imageAlt}</span>
   </div>
   `;
   return img;
@@ -46,6 +55,7 @@ function addGallery(pictures) {
 
   pictures.forEach((picture) => {
     const galleryItem = galleryTemplate(picture);
+
     fragment += galleryItem;
   })
   slider.insertAdjacentHTML("beforeend", fragment);
@@ -58,12 +68,19 @@ function filterGallery(e) {
     const title = document.querySelector(".title");
     title.textContent = keyword;
     getGallery(keyword);
-
   }
-
+  const header = document.querySelector(".header");
+  console.log(header);
+  header.classList.add("top");
 }
+function changeBackgroundImage(imageUrl) {
+  const mainCard = document.querySelector('.main__card');
+  const currentBackgroundImage = `url("img/bg3.jfif")`;
+  imageUrl ? mainCard.style.backgroundImage = `url("${imageUrl}")` : currentBackgroundImage;
+}
+
+
 const form = document.querySelector('#search');
 form.addEventListener('submit', filterGallery);
 
-/* getGallery() */
 new Slider()
