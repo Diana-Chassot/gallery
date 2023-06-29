@@ -13,7 +13,7 @@ body {
   overflow: hidden;
 }
 .header {
-  background-image: url("/img/bg.jpg");
+  background-image: url("../img/bg.jpg");
   background-color: #121315;
   background-size: cover;
   background-position: center;
@@ -26,11 +26,10 @@ body {
   top: 0;
   z-index: 9999;
   width: 100%;
- transform: translateY(-82px);
+  transform: translateY(-82px);
 }
 .header.top:hover {
-   transform: translateY(0); 
- 
+  transform: translateY(0);
 }
 .title {
   color: white;
@@ -57,7 +56,8 @@ input {
 #search {
   font-size: 12px;
 }
-#submit:hover {
+#submit:hover,
+#submit:active {
   transform: scale(1.1);
   z-index: 999;
 }
@@ -85,12 +85,6 @@ input {
   max-width: 100%;
   height: 100%;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-  scroll-snap-type: x mandatory;
-  overflow-x: scroll;
-}
-.overflow {
-  overflow-x: scroll;
-  overflow-y: hidden;
 }
 .slide {
   width: 800px;
@@ -98,19 +92,55 @@ input {
   height: 100%;
   position: absolute;
   transition: all 0.9s;
-  scroll-snap-align: center;
+  overflow: hidden;
 }
 .slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
+  transition: filter, transform 0.6s;
+  position: relative;
 }
-.slide a:hover {
+
+.slide:hover img {
   filter: grayscale(1);
+  transform: scale(1.1);
 }
+.open {
+  position: absolute;
+  display: none;
+  bottom: 7%;
+  z-index: 9999;
+  right: 2%;
+  padding: 20px 40px;
+  border: 2px solid white;
+  align-items: center;
+  flex-direction: column;
+  background-color: #1a191987;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: white;
+  text-align: center;
+  gap: 15px;
+  border-radius: 4px;
+}
+.slide:hover .open {
+  display: flex;
+}
+
+.slide a {
+  background-color: white;
+  color: #121315;
+  padding: 10px 15px;
+  border-radius: 4px;
+  border: 3px solid white;
+  text-transform: capitalize;
+  font-weight: 400;
+}
+
 .main__card {
-  background-image: url("/img/bg3.jfif");
+  background-image: url("../img/bg3.jfif");
   background-size: cover;
   background-position: center;
   display: flex;
@@ -145,7 +175,13 @@ input {
   background-color: white;
   font-size: 18px;
 }
-.btn:active {
+a{
+  transition: transform 0.6s;
+}
+.btn:active,
+a:active,
+a:hover
+{
   transform: scale(1.1);
 }
 
@@ -161,6 +197,6 @@ input {
 
 @media screen and (max-width: 868px) {
   .slider {
-    width:auto;
+    width: auto;
   }
 }

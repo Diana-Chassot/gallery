@@ -7,19 +7,15 @@ function getGallery(key) {
   const url = `${API_URL}photos/random?client_id=${API_KEY}&count=30&query=${keyword}`;
 
   const main = document.querySelector('.main');
-  main.classList.add('loading'); 
   return fetch(url)
     .then(response => checkStatusResponse(response))
     .then(data => {
-       setTimeout(() => {
-        main.classList.remove('loading'); 
-      }, 2000); 
       changeBackgroundImage(data[1].urls.regular)
       addGallery(data)
       new Slider()
     })
     .catch(error => console.error('Error:', error))
-    
+
 }
 
 function checkStatusResponse(response) {
@@ -38,10 +34,12 @@ function galleryTemplate(picture) {
   const imageDownloadLink = picture.links.download;
 
   const img = `
-  <div class="slide">
-    <a href="${imageDownloadLink}" target="_blank" rel="noopener noreferrer">
-      <img src="${imageUrl}" alt="${imageAlt}" oncontextmenu="event.preventDefault()">
-    </a>
+  <div class="slide"> 
+      <img src="${imageUrl}" alt="${imageAlt}" oncontextmenu="event.preventDefault()" loading="lazy">
+      <div class="open">
+        <a href="${imageDownloadLink}" target="_blank" rel="noopener noreferrer">Open</a>
+        <p>${imageAlt}</p>
+      </div>
   </div>
   `;
   return img;
@@ -63,19 +61,22 @@ function addGallery(pictures) {
 function filterGallery(e) {
   e.preventDefault();
   const filterInput = document.getElementById("search__input");
+  const slide = document.querySelector('.slide');
   const keyword = filterInput.value;
   if (keyword) {
     const title = document.querySelector(".title");
     title.textContent = keyword;
     getGallery(keyword);
   }
+  if (slide) {
+    slide.focus();
+  }
   const header = document.querySelector(".header");
-  console.log(header);
   header.classList.add("top");
 }
 function changeBackgroundImage(imageUrl) {
   const mainCard = document.querySelector('.main__card');
-  const currentBackgroundImage = `url("img/bg3.jfif")`;
+  const currentBackgroundImage = `url("../img/bg3.jfif")`;
   imageUrl ? mainCard.style.backgroundImage = `url("${imageUrl}")` : currentBackgroundImage;
 }
 
