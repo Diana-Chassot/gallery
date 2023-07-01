@@ -6,7 +6,6 @@ function getGallery(key) {
   const keyword = key;
   const url = `${API_URL}photos/random?client_id=${API_KEY}&count=30&query=${keyword}`;
 
-  const main = document.querySelector('.main');
   return fetch(url)
     .then(response => checkStatusResponse(response))
     .then(data => {
@@ -61,19 +60,17 @@ function addGallery(pictures) {
 function filterGallery(e) {
   e.preventDefault();
   const filterInput = document.getElementById("search__input");
-  const slide = document.querySelector('.slide');
   const keyword = filterInput.value;
   if (keyword) {
     const title = document.querySelector(".title");
     title.textContent = keyword;
     getGallery(keyword);
   }
-  if (slide) {
-    slide.focus();
-  }
+
   const header = document.querySelector(".header");
   header.classList.add("top");
 }
+
 function changeBackgroundImage(imageUrl) {
   const mainCard = document.querySelector('.main__card');
   const currentBackgroundImage = `url("../img/bg3.jfif")`;

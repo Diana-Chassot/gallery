@@ -1,6 +1,7 @@
 html {
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 body {
   font-family: "Merriweather", serif;
@@ -10,7 +11,6 @@ body {
 .gallery {
   background-color: #121315;
   height: 100%;
-  overflow: hidden;
 }
 .header {
   background-image: url("../img/bg.jpg");
@@ -93,12 +93,15 @@ input {
   position: absolute;
   transition: all 0.9s;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: top center;
   transition: filter, transform 0.6s;
   position: relative;
 }
@@ -112,18 +115,18 @@ input {
   display: none;
   bottom: 7%;
   z-index: 9999;
-  right: 2%;
-  padding: 20px 40px;
+  padding: 10px;
   border: 2px solid white;
   align-items: center;
   flex-direction: column;
-  background-color: #1a191987;
-  font-weight: 600;
+  background-color: #3c3c3c87;
+  font-weight: 500;
   text-transform: uppercase;
-  color: white;
-  text-align: center;
+  color: #cbcbcb;
+  text-align: justify;
   gap: 15px;
   border-radius: 4px;
+  max-width: 80%;
 }
 .slide:hover .open {
   display: flex;
@@ -131,18 +134,17 @@ input {
 
 .slide a {
   background-color: white;
-  color: #121315;
-  padding: 10px 15px;
+  color: #404040;
+  padding: 9px 47px;
   border-radius: 4px;
   border: 3px solid white;
-  text-transform: capitalize;
   font-weight: 400;
 }
 
 .main__card {
   background-image: url("../img/bg3.jfif");
   background-size: cover;
-  background-position: center;
+  background-position: top center;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -175,13 +177,12 @@ input {
   background-color: white;
   font-size: 18px;
 }
-a{
+a {
   transition: transform 0.6s;
 }
 .btn:active,
 a:active,
-a:hover
-{
+a:hover {
   transform: scale(1.1);
 }
 
@@ -198,5 +199,15 @@ a:hover
 @media screen and (max-width: 868px) {
   .slider {
     width: auto;
+  }
+}
+@media screen and (max-width: 420px) {
+  .btn {
+    opacity: 0.3;
+    width: 40px;
+    height: 40px;
+  }
+  .btn:hover {
+    opacity: 1;
   }
 }
