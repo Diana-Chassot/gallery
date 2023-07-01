@@ -47,7 +47,7 @@ class Slider {
   handleTouchEnd() {
 
     const touchDiff = this.touchStartX - this.touchEndX;
-    const swipeThreshold = 100;
+    const swipeThreshold = 150;
     if (touchDiff > swipeThreshold && this.currentSlide < this.maxSlide) {
       this.nextSlide();
     } else if (touchDiff < -swipeThreshold && this.currentSlide > 0) {

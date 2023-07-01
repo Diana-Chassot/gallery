@@ -34,7 +34,8 @@ function galleryTemplate(picture) {
 
   const img = `
   <div class="slide"> 
-      <img src="${imageUrl}" alt="${imageAlt}" oncontextmenu="event.preventDefault()" loading="lazy">
+      <img src="${imageUrl}" alt="${imageAlt}" oncontextmenu="event.preventDefault()" style="width: 100%;
+      height: 100%;">
       <div class="open">
         <a href="${imageDownloadLink}" target="_blank" rel="noopener noreferrer">Open</a>
         <p>${imageAlt}</p>
