@@ -1,20 +1,23 @@
 import Slider from "./slide.js";
 
 function getGallery(key) {
+
   const API_KEY = 'Vsjek4agqqjVR5PVaeJrGbuTS7sPivIQpSCn_t6iMhk';
   const API_URL = 'https://api.unsplash.com/';
   const keyword = key;
   const url = `${API_URL}photos/random?client_id=${API_KEY}&count=30&query=${keyword}`;
 
-  return fetch(url)
+  fetch(url)
     .then(response => checkStatusResponse(response))
     .then(data => {
       changeBackgroundImage(data[1].urls.regular)
       addGallery(data)
       new Slider()
     })
-    .catch(error => console.error('Error:', error))
-
+    .catch(error => {
+      console.error('Error:', error)
+    })
+    
 }
 
 function checkStatusResponse(response) {
@@ -34,12 +37,13 @@ function galleryTemplate(picture) {
 
   const img = `
   <div class="slide"> 
+    <a href="${imageDownloadLink}" target="_blank" rel="noopener noreferrer">
       <img src="${imageUrl}" alt="${imageAlt}" oncontextmenu="event.preventDefault()" style="width: 100%;
-      height: 100%;">
-      <div class="open">
-        <a href="${imageDownloadLink}" target="_blank" rel="noopener noreferrer">Open</a>
-        <p>${imageAlt}</p>
-      </div>
+      height: 100%;" loading="lazy">
+    </a>
+    <div class="open">
+      <p class="img-descr">${imageAlt}</p>
+    </div>
   </div>
   `;
   return img;

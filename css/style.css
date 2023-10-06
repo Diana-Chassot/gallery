@@ -8,7 +8,35 @@ body {
   width: 100%;
   height: 100%;
 }
-
+.loader--wrapper {
+  background-color: #1e1e1e;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 9999;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 3px solid #fff;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 .btn-prev,
 .btn-next {
   touch-action: manipulation;
@@ -105,43 +133,39 @@ input {
 .slide img {
   object-fit: cover;
   object-position: top center;
-  transition: filter, transform 0.6s;
+  transition: transform 0.6s;
   position: relative;
 }
 
 .slide:hover img {
-  filter: grayscale(1);
   transform: scale(1.1);
 }
 .open {
   position: absolute;
   display: none;
-  bottom: 7%;
+  bottom: 2%;
+  right: 2%;
   z-index: 9999;
-  padding: 10px;
   border: 2px solid white;
-  align-items: center;
-  flex-direction: column;
-  background-color: #3c3c3c87;
-  font-weight: 500;
-  text-transform: uppercase;
-  color: #cbcbcb;
-  text-align: justify;
-  gap: 15px;
+  color: white;
   border-radius: 4px;
-  max-width: 80%;
+  max-width: 30%;
+  background-color: #1e1e1e69; 
+  padding: 8px;
+  font-size: 10px;
 }
 .slide:hover .open {
   display: flex;
 }
 
 .slide a {
-  background-color: white;
-  color: #404040;
-  padding: 9px 47px;
-  border-radius: 4px;
-  border: 3px solid white;
-  font-weight: 400;
+  width: 100%;
+  height: 100%;
+ 
+}
+.slide p{
+  text-align: start;
+  text-transform: capitalize;
 }
 
 .main__card {
@@ -173,12 +197,13 @@ input {
   width: 60px;
   height: 60px;
   padding: 10px;
-  border: none;
+  border: 2px solid #33333379;
   border-radius: 50%;
   z-index: 10px;
   cursor: pointer;
   background-color: white;
   font-size: 18px;
+  color: #333333af;
 }
 a {
   transition: transform 0.6s;
@@ -207,8 +232,6 @@ a:hover {
 @media screen and (max-width: 420px) {
   .btn {
     opacity: 0.3;
-    width: 40px;
-    height: 40px;
   }
   .btn:hover {
     opacity: 1;
